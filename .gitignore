@@ -1,7 +1,10 @@
-__pycache__/
-*.pyc
 .venv/
+work/
+__pycache__/
+.pytest_cache/
 node_modules/
 .env
-*-events-*.json
-artifacts/
+*.sqlite3*
+playwright-report/
+test-results/
+docs/models/*.task

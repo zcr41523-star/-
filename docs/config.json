@@ -1,0 +1,12 @@
+{
+  "threshold": 0.75,
+  "minFrames": 3,
+  "maxGapMs": 600,
+  "releaseMs": 400,
+  "gestures": {
+    "Open_Palm": { "action": "HELP", "holdMs": 1500 },
+    "Victory": { "action": "CANCEL_ALERT", "holdMs": 2000 },
+    "Thumb_Up": { "action": "LIGHT_ON", "holdMs": 1000 },
+    "Thumb_Down": { "action": "LIGHT_OFF", "holdMs": 1000 }
+  }
+}

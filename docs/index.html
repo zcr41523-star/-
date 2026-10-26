@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Smart Care · 手势照护控制台</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <span class="brand">✳ SMART CARE <small>B MODULE / 手势控制</small></span
+      ><span id="modeBadge">设备端 AI · 本地演示</span>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">AI 기반 스마트 케어 시스템</p>
+        <h1>用一个手势，<br />传递照护信号。</h1>
+        <p>
+          固定摄像头 · 单用户 · MediaPipe 预训练识别<br />图像在当前设备处理；仅可选择发送动作事件。
+        </p>
+      </section>
+      <section class="workspace">
+        <div class="camera card">
+          <div class="cardhead">
+            <h2>实时识别</h2>
+            <span id="cameraStatus">摄像头未启动</span>
+          </div>
+          <div class="viewport">
+            <video id="video" playsinline muted></video
+            ><canvas id="canvas"></canvas>
+            <div id="placeholder">
+              摄像头画面将在这里显示<br /><small
+                >允许权限后开始 · 无需安卓设备</small
+              >
+            </div>
+          </div>
+          <div class="controls">
+            <select id="cameraSelect" aria-label="摄像头">
+              <option value="">默认摄像头</option></select
+            ><button id="start">启动摄像头</button
+            ><button id="stop" class="secondary">停止</button>
+          </div>
+          <p id="error" role="alert"></p>
+          <div class="metrics">
+            <div><small>手势</small><strong id="gesture">—</strong></div>
+            <div>
+              <small>分类分数（非准确率）</small><strong id="score">—</strong>
+            </div>
+            <div><small>有效帧</small><strong id="frames">0</strong></div>
+          </div>
+          <progress id="progress" max="1" value="0"></progress>
+          <p id="holdStatus">等待有效手势</p>
+        </div>
+        <aside>
+          <div class="card">
+            <div class="cardhead">
+              <h2>照护状态</h2>
+              <span id="stateOrigin">本地演示</span>
+            </div>
+            <div id="alarm" class="state">● 无报警</div>
+            <div id="lamp" class="lamp">☀</div>
+            <p id="lampText">虚拟灯 · 已关闭</p>
+            <small
+              >仅报警状态与虚拟灯；未实现短信、电话、推送或实体灯控制。</small
+            >
+          </div>
+          <div class="card">
+            <h2>保持手势后执行</h2>
+            <ul class="rules">
+              <li>✋ 张开手掌 <b>求助 · 1.5 秒</b></li>
+              <li>✌ V 字 <b>取消报警 · 2 秒</b></li>
+              <li>👍 拇指向上 <b>开灯 · 1 秒</b></li>
+              <li>👎 拇指向下 <b>关灯 · 1 秒</b></li>
+            </ul>
+            <small
+              >以上为本项目自定义约定。触发后放下手至少 0.4
+              秒，才能再次触发。</small
+            >
+          </div>
+        </aside>
+      </section>
+      <section class="bottom">
+        <div class="card">
+          <h2>运行设置</h2>
+          <label
+            >分类分数阈值
+            <input
+              id="threshold"
+              type="number"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.75"
+          /></label>
+          <p>
+            至少 3 个有效帧；相邻帧间隔超过 0.6
+            秒重计时。后台、停止和断流均重置。
+          </p>
+          <label
+            >后端地址
+            <input
+              id="backendUrl"
+              placeholder="留空为本地演示；或 http://127.0.0.1:8000" /></label
+          ><label
+            >访问令牌
+            <input
+              id="token"
+              type="password"
+              autocomplete="off"
+              placeholder="仅保留在当前页面内存"
+          /></label>
+          <div class="controls">
+            <button id="connect">连接后端</button
+            ><button id="disconnect" class="secondary">本地演示</button>
+          </div>
+          <p id="connection">未连接后端</p>
+          <small
+            >HTTPS Pages 联调请使用 HTTPS 后端（如 Codespaces）。HTTP
+            局域网地址可能被浏览器阻止。</small
+          >
+        </div>
+        <div class="card">
+          <h2>模拟操作 <span class="tag">非 AI 识别</span></h2>
+          <p>
+            模拟仅修改本地演示状态，不发送共享后端，不验证手势识别或保持计时。连接后端时禁用。
+          </p>
+          <div id="simButtons" class="controls">
+            <button data-action="HELP">模拟求助</button
+            ><button data-action="FALL_DETECTED">模拟跌倒</button
+            ><button data-action="CANCEL_ALERT">模拟取消</button
+            ><button data-action="LIGHT_ON">模拟开灯</button
+            ><button data-action="LIGHT_OFF">模拟关灯</button>
+          </div>
+          <h2>事件记录</h2>
+          <ol id="events" aria-live="polite"></ol>
+        </div>
+      </section>
+      <footer>毕业设计 B 模块 · 不上传摄像头视频 · 不代表医疗级照护系统</footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
