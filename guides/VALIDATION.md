@@ -24,4 +24,12 @@
 - Expo 示例尚未在队友真实 App 中编译/运行；iOS 网络策略、局域网、防火墙和 Codespaces 转发仍需实机联调。
 - 未实现短信、电话、推送、实体灯/LED、生产级多用户权限和医疗级照护能力。
 
-GitHub 提交、CI 和 Pages 发布状态将以实际远程结果另行更新；不能把预期地址当上线证明。
+## GitHub 与线上验证
+
+- 仓库：[zcr41523-star/-](https://github.com/zcr41523-star/-)。原始提交与文档已保留在历史及 `legacy/initial-upload/`。
+- 完整实现提交：`37b22ba33461b1b8e322f1c97e40c13cac6841ab`。
+- [Tests 运行 40289677658](https://github.com/zcr41523-star/-/actions/runs/40289677658)：Windows 与 Ubuntu 均成功，包含 Python、Node 和 Chromium 测试。
+- [Pages 部署 40289677812](https://github.com/zcr41523-star/-/actions/runs/40289677812)：成功。
+- 真实演示地址：<https://zcr41523-star.github.io/-/>。页面、app.js、config.json 与模型均实际返回 HTTP 200，线上模型 SHA256 与本地一致。
+- 线上浏览器实际加载 CDN JS/WASM、本仓库模型并使用合成摄像头持续推理成功；仍未使用真实人的手部。
+- 首次线上自动检查在事件绑定前点击按钮而超时。等待事件绑定后确认可推理，并修复了初始按钮状态：现在在配置加载和绑定完成前禁用按钮，避免慢网络初次点击丢失。修复后本地 Chromium 回归 2 项通过。

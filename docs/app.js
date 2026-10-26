@@ -334,3 +334,8 @@ document.querySelectorAll("[data-action]").forEach(
 );
 render();
 if (navigator.mediaDevices) void cameras();
+
+// 配置与事件绑定完成后才允许点击，防止慢网络上首次操作丢失。
+document
+  .querySelectorAll("button")
+  .forEach((button) => (button.disabled = false));

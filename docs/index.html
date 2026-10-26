@@ -37,8 +37,8 @@
           <div class="controls">
             <select id="cameraSelect" aria-label="摄像头">
               <option value="">默认摄像头</option></select
-            ><button id="start">启动摄像头</button
-            ><button id="stop" class="secondary">停止</button>
+            ><button disabled id="start">启动摄像头</button
+            ><button disabled id="stop" class="secondary">停止</button>
           </div>
           <p id="error" role="alert"></p>
           <div class="metrics">
@@ -110,8 +110,10 @@
               placeholder="仅保留在当前页面内存"
           /></label>
           <div class="controls">
-            <button id="connect">连接后端</button
-            ><button id="disconnect" class="secondary">本地演示</button>
+            <button disabled id="connect">连接后端</button
+            ><button disabled id="disconnect" class="secondary">
+              本地演示
+            </button>
           </div>
           <p id="connection">未连接后端</p>
           <small
@@ -125,11 +127,11 @@
             模拟仅修改本地演示状态，不发送共享后端，不验证手势识别或保持计时。连接后端时禁用。
           </p>
           <div id="simButtons" class="controls">
-            <button data-action="HELP">模拟求助</button
-            ><button data-action="FALL_DETECTED">模拟跌倒</button
-            ><button data-action="CANCEL_ALERT">模拟取消</button
-            ><button data-action="LIGHT_ON">模拟开灯</button
-            ><button data-action="LIGHT_OFF">模拟关灯</button>
+            <button disabled data-action="HELP">模拟求助</button
+            ><button disabled data-action="FALL_DETECTED">模拟跌倒</button
+            ><button disabled data-action="CANCEL_ALERT">模拟取消</button
+            ><button disabled data-action="LIGHT_ON">模拟开灯</button
+            ><button disabled data-action="LIGHT_OFF">模拟关灯</button>
           </div>
           <h2>事件记录</h2>
           <ol id="events" aria-live="polite"></ol>
