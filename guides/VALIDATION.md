@@ -26,7 +26,7 @@
 
 ## GitHub 与线上验证
 
-- 仓库：[zcr41523-star/-](https://github.com/zcr41523-star/-)。原始提交与文档已保留在历史及 `legacy/initial-upload/`。
+- 仓库：[zcr41523-star/-](https://github.com/zcr41523-star/-)。旧导入备份与旧 CSV 已按要求从当前分支清理，原始提交仍可通过 Git 历史追溯。
 - 完整实现提交：`37b22ba33461b1b8e322f1c97e40c13cac6841ab`。
 - [Tests 运行 40289677658](https://github.com/zcr41523-star/-/actions/runs/40289677658)：Windows 与 Ubuntu 均成功，包含 Python、Node 和 Chromium 测试。
 - [Pages 部署 40289677812](https://github.com/zcr41523-star/-/actions/runs/40289677812)：成功。
